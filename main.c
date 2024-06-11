@@ -12,7 +12,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 
 int addition(int a, int b){
@@ -28,68 +27,78 @@ int multiplication(int a, int b){
 }
 
 float  division(int a, int b){
-    if (b != 0) {
-        return (float)a / b;
-    } else {
-        printf("Erreur : Division par zero\n");
-        return 0.0;
-    }
+	return (float)a / b;
 }
 
-int main(){
-    int a;
-    int b;
-    int choix;
+void menu()
+{
+	int a;
+	int b;
+	int choix;
 
     printf("Bienvenue sur ma calculatrice; Veuillez choisir une opération à effectuer :\n");
     printf(" 1 : addition\n");
     printf(" 2 : soustraction\n");
     printf(" 3 : multiplication\n");
     printf(" 4 : division\n");
-
-    scanf("%d",&choix);
-
+    do{
+		scanf("%d",&choix);
+		if (choix < 0 || choix > 4)
+		{
+			printf("veuillez entrer un nombre entre 1 et 4\n");
+		}
+    } while (choix < 0 || choix > 4);
     switch (choix)
     {
-    case 1:
-        printf("Entrez la valeur de A : ");
-        scanf("%d",&a);
-        printf("Entrez la valeur de B : ");
-        scanf("%d",&b);
-        printf("L'addition de %d + %d = %d",a,b,addition(a,b));
-        break;
+		case 1:
+		    printf("Entrez la valeur de A : ");
+		    scanf("%d",&a);
+		    printf("Entrez la valeur de B : ");
+		    scanf("%d",&b);
+		    printf("L'addition de %d + %d = %d\n",a,b,addition(a,b));
+		    break;
 
-    case 2:
-        printf("Entrez la valeur de A : ");
-        scanf("%d",&a);
-        printf("Entrez la valeur de B : ");
-        scanf("%d",&b);
-        printf("La soustraction de %d - %d = %d",a,b,soustraction(a,b));
-        break;
+		case 2:
+		    printf("Entrez la valeur de A : ");
+		    scanf("%d",&a);
+		    printf("Entrez la valeur de B : ");
+		    scanf("%d",&b);
+		    printf("La soustraction de %d - %d = %d\n",a,b,soustraction(a,b));
+		    break;
 
-    case 3:
-        printf("Entrez la valeur de A : ");
-        scanf("%d",&a);
-        printf("Entrez la valeur de B : ");
-        scanf("%d",&b);
-        printf("La multiplication de %d x %d = %d",a,b,multiplication(a,b));
-        break;
+		case 3:
+		    printf("Entrez la valeur de A : ");
+		    scanf("%d",&a);
+		    printf("Entrez la valeur de B : ");
+		    scanf("%d",&b);
+		    printf("La multiplication de %d x %d = %d\n",a,b,multiplication(a,b));
+		    break;
 
-    case 4:
-        printf("Entrez la valeur de A : ");
-        scanf("%d",&a);
-        printf("Entrez la valeur de B : ");
-        scanf("%d",&b);
-        if (b==0)
-        {
-            printf("B doit etre supérieur à 0");
-            break;
-        }
-        printf("La division de %d / %d = %f",a,b,division(a,b));
-        break;
-    
-    default:
-        break;
+		case 4:
+		    printf("Entrez la valeur de A : ");
+		    scanf("%d",&a);
+		    printf("Entrez la valeur de B : ");
+		    scanf("%d",&b);
+		    if (b==0)
+		    {
+		        printf("B doit etre différent de 0");
+		        break;
+		    }
+		    printf("La division de %d / %d = %f\n",a,b,division(a,b));
+		    break;
+		
+		default:
+		    break;
     }
+}
+
+int main(){
+	int calcul;
+    do {
+    	calcul = 0;
+		menu();
+		printf("Voulez vous faire un autre calcul ?\n0 pour non 1 pour oui\n");
+		scanf("%d", &calcul);
+	} while (calcul == 1);
     return 0;
 }
